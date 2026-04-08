@@ -1,9 +1,8 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { v4 as uuidv4 } from 'crypto';
 import { supabase } from '../db/supabase';
 import { checkPassportExceptions } from '../events/webhook.handler';
-import type { Stage, ExceptionType, ExceptionSeverity } from '../types/passport';
+import type { Stage } from '../types/passport';
 
 const router = Router();
 
