@@ -1,7 +1,7 @@
 import { supabase } from '../db/supabase';
 import { notifyException } from '../notifications/cowboy.notify';
 import type { ExceptionType, ExceptionSeverity, Stage } from '../types/passport';
-import { logger } from '../server';
+import { logger } from '../utils/logger';
 
 // Stage → required role mapping
 const STAGE_ROLE_MAP: Record<Stage, keyof typeof ROLE_KEYS> = {

@@ -1,4 +1,4 @@
-import { logger } from '../server';
+import { logger } from '../utils/logger';
 import type { ExceptionType, ExceptionSeverity } from '../types/passport';
 
 // ============================================================
