@@ -1,20 +1,35 @@
 {
-  "name": "openclaw-railway-template",
+  "name": "relay-platform",
+  "version": "0.1.0",
   "private": true,
-  "type": "module",
   "engines": {
-    "node": ">=24"
+    "node": ">=20"
   },
   "scripts": {
-    "dev": "node src/server.js",
-    "start": "node src/server.js",
-    "lint": "node -c src/server.js"
+    "dev": "nodemon --exec ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "tsc --noEmit",
+    "openclaw:start": "node src/server.js",
+    "openclaw:dev": "node src/server.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@supabase/supabase-js": "^2.49.4",
+    "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "http-proxy": "^1.18.1",
     "node-pty": "^1.0.0",
-    "ws": "^8.18.0"
+    "winston": "^3.17.0",
+    "ws": "^8.18.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.14.1",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": ["node-pty"]

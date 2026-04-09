@@ -1,8 +1,10 @@
 [build]
 builder = "dockerfile"
+buildCommand = "npm run build"
 
 [deploy]
-healthcheckPath = "/setup/healthz"
+startCommand = "npm start"
+healthcheckPath = "/healthz"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
 
