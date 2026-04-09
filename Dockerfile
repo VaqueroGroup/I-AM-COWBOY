@@ -16,10 +16,12 @@ RUN npm install -g openclaw@2026.4.5 clawhub@latest
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml ./
-RUN corepack enable && pnpm install --frozen-lockfile --prod
+COPY package.json package-lock.json tsconfig.json ./
+RUN npm ci
+RUN npm run build
 
-COPY src ./src
+COPY src/public ./src/public
+COPY src/server.js ./src/server.js
 COPY --chmod=755 entrypoint.sh ./entrypoint.sh
 
 RUN useradd -m -s /bin/bash openclaw \
@@ -40,7 +42,7 @@ ENV OPENCLAW_ENTRY=/usr/local/lib/node_modules/openclaw/dist/entry.js
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
-  CMD curl -f http://localhost:8080/setup/healthz || exit 1
+  CMD curl -f http://localhost:8080/healthz || exit 1
 
 USER root
 ENTRYPOINT ["./entrypoint.sh"]
